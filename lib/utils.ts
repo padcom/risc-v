@@ -12,7 +12,7 @@ interface Number {
   toBin16(): string
   toBin32(): string
 
-  u12s32 (): number
+  u12s32(): number
   u21s32(): number
   u32s32(): number
   s32u32(): number
@@ -53,6 +53,8 @@ Number.prototype.toBin32 = function() {
 Number.prototype.u12s32 = function(this: number) {
   const SIGN_BIT = 0b00000000000000000000100000000000
   const SIGN_MSK = 0b11111111111111111111100000000000
+
+  // console.log('this', this.toBin16(), this & SIGN_BIT)
 
   return Math.trunc((this & SIGN_BIT) ? (this | SIGN_MSK) : this)
 }

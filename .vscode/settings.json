@@ -5,12 +5,12 @@
     "funct",
     "imms",
     "immu",
+    "JALR",
     "risc",
     "shamt",
     "succ"
   ],
   "editor.codeActionsOnSave": {
     "source.fixAll": true
-  },
-  "testing.automaticallyOpenPeekView": "never"
+  }
 }

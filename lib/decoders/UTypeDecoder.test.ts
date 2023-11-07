@@ -16,6 +16,6 @@ describe('R-type decoder', () => {
 
   it('will decode imm', () => {
     const { imm } = decoder.decode(0xffffffff)
-    expect(imm.s32u32()).toBe(0b11111111111111111111000000000000)
+    expect(imm).toBe(-0x1000)
   })
 })
