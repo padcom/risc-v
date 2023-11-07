@@ -1,6 +1,8 @@
-export class ITypeDecoder {
+import { Decoder } from "../Decoder"
+
+export class ITypeDecoder extends Decoder {
   decode(arg0: number) {
-    const opcode = arg0 & 0b1111111 >>> 0
+    const { opcode } = super.decode(arg0)
     const rd = (arg0 & 0b111110000000) >>> 7
     const funct3 = (arg0 & 0b111000000000000) >>> 12
     const rs1 = (arg0 & 0b11111000000000000000) >>> 15
