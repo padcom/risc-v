@@ -11,35 +11,35 @@ describe('RAM', () => {
 
   it('will write 8-bit value', () => {
     const memory = new RAM(0x1000, 1)
-    memory.write8(0x1000, 2)
+    memory.write8(0x1000, 0x02)
     const actual = memory.read8(0x1000)
-    expect(actual).toBe(2)
+    expect(actual).toBe(0x02)
   })
 
   it('will read 16-bit value', () => {
-    const memory = new RAM(0x1000, 2).load(0x1000, [0x01, 0x02])
+    const memory = new RAM(0x1000, 2).load(0x1000, [0x03, 0x04])
     const actual = memory.read16(0x1000)
-    expect(actual).toBe(0x0102)
+    expect(actual).toBe(0x0304)
   })
 
   it('will write 16-bit value', () => {
     const memory = new RAM(0x1000, 2)
-    memory.write16(0x1000, 0x0203)
+    memory.write16(0x1000, 0x0506)
     const actual = memory.read16(0x1000)
-    expect(actual).toBe(0x0203)
+    expect(actual).toBe(0x0506)
   })
 
   it('will read 32-bit value', () => {
-    const memory = new RAM(0x1000, 4).load(0x1000, [0x01, 0x02, 0x03, 0x04])
+    const memory = new RAM(0x1000, 4).load(0x1000, [0x07, 0x08, 0x09, 0x0a])
     const actual = memory.read32(0x1000)
-    expect(actual).toBe(0x01020304)
+    expect(actual).toBe(0x0708090a)
   })
 
   it('will write 32-bit value', () => {
     const memory = new RAM(0x1000, 4)
-    memory.write32(0x1000, 0x02030405)
+    memory.write32(0x1000, 0x0b0c0d0e)
     const actual = memory.read32(0x1000)
-    expect(actual).toBe(0x02030405)
+    expect(actual).toBe(0x0b0c0d0e)
   })
 
   it('will throw an error when loading values below available space', () => {
