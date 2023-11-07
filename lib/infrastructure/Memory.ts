@@ -57,10 +57,10 @@ export class RAM implements Memory {
   read16(address: uint32): number {
     this.validateAddressInRange(address, 2)
 
-    const lo = this.bytes[address - this.base + 0] << 8
-    const hi = this.bytes[address - this.base + 1] << 0
+    const n0 = this.bytes[address - this.base + 0] << 8
+    const n1 = this.bytes[address - this.base + 1] << 0
 
-    return lo | hi
+    return n0 | n1
   }
 
   write16(address: uint32, value: uint16): void {
