@@ -6,5 +6,8 @@
     "shamt",
     "succ"
   ],
-  "testing.automaticallyOpenPeekView": "never"
+  "testing.automaticallyOpenPeekView": "never",
+  "editor.codeActionsOnSave": {
+    "source.fixAll": true
+  }
 }
