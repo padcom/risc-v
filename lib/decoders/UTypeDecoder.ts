@@ -1,4 +1,4 @@
-import { Decoder } from "./Decoder"
+import { Decoder } from './Decoder'
 
 export class UTypeDecoder extends Decoder {
   decode(arg0: number) {

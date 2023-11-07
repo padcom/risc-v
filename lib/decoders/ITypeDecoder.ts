@@ -1,4 +1,4 @@
-import { Decoder } from "./Decoder"
+import { Decoder } from './Decoder'
 
 export class ITypeDecoder extends Decoder {
   decode(arg0: number) {

@@ -1,4 +1,4 @@
-import { Decoder, encode } from './Decoder'
+import { Decoder } from './Decoder'
 
 export class JTypeDecoder extends Decoder {
   decode(arg0: number) {
