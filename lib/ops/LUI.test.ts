@@ -8,10 +8,6 @@ import { uint32, uint5 } from '../infrastructure/Memory'
 describe('LUI - load upper immediate', () => {
   const op = new LUI()
 
-  it('will recognize', () => {
-    expect(op.recognize(0b0000000000000000000000000_0110111)).toBe(true)
-  })
-
   interface TestCase {
     instruction: uint32
     value: uint32
@@ -39,6 +35,7 @@ describe('LUI - load upper immediate', () => {
   cases.forEach(({ instruction, value, register }) => {
     it(`will load ${value} into register x${register}`, () => {
       const registers = new Registers()
+      expect(op.recognize(instruction)).toBe(true)
       op.execute(instruction, registers)
       expect(registers.x[register].s32u32()).toBe(value)
     })

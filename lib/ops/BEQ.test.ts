@@ -7,12 +7,8 @@ import { BEQ } from './BEQ'
 import { Registers } from '../infrastructure/Registers'
 import { uint32, uint5 } from '../infrastructure/Memory'
 
-describe('BEQ - load upper immediate', () => {
+describe('BEQ - branch if equal', () => {
   const op = new BEQ()
-
-  it('will recognize', () => {
-    expect(op.recognize(0b0_000000_00000_00000_000_0000_0_1100011)).toBe(true)
-  })
 
   interface TestCase {
     instruction: uint32
@@ -64,6 +60,7 @@ describe('BEQ - load upper immediate', () => {
       registers.x[rs1] = rs1I
       registers.x[rs2] = rs2I
       registers.pc = pcI
+      expect(op.recognize(instruction)).toBe(true)
       op.execute(instruction, registers)
       expect(registers.pc).toBe(pcO)
     })

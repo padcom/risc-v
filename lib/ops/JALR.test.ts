@@ -8,10 +8,6 @@ import { uint32, uint5 } from '../infrastructure/Memory'
 describe('JALR - jump and link register', () => {
   const op = new JALR()
 
-  it('will recognize', () => {
-    expect(op.recognize(0b0000000000000000000000000_1100111)).toBe(true)
-  })
-
   interface TestCase {
     /** instruction to execute */
     instruction: uint32
@@ -47,6 +43,8 @@ describe('JALR - jump and link register', () => {
     it(`will execute ${instruction.toBin32()}`, () => {
       const registers = new Registers()
       registers.x[rs1] = rs1I
+
+      expect(op.recognize(instruction)).toBe(true)
       op.execute(instruction, registers)
 
       expect(registers.pc).toBe(pcO)

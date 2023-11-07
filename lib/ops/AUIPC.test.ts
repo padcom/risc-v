@@ -8,10 +8,6 @@ import { uint5, uint12, uint32 } from '../infrastructure/Memory'
 describe('AUIPC - add upper immediate to pc', () => {
   const op = new AUIPC()
 
-  it('will recognize', () => {
-    expect(op.recognize(0b0000000000000000000000000_0010111)).toBe(true)
-  })
-
   interface TestCase {
     instruction: uint32
     pc: uint12
