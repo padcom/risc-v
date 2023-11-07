@@ -100,6 +100,8 @@ describe('RAM', () => {
 
   it('will throw an error when accessing uint32 on uneven address', () => {
     expect(() => new RAM(0x1000, 8).read32(0x1001)).toThrow('Memory alignment error')
+    expect(() => new RAM(0x1000, 8).read32(0x1002)).toThrow('Memory alignment error')
+    expect(() => new RAM(0x1000, 8).read32(0x1003)).toThrow('Memory alignment error')
   })
 
   it('will throw an error when writing uint32 below available space', () => {
@@ -112,5 +114,7 @@ describe('RAM', () => {
 
   it('will throw an error when writing uint32 on uneven address', () => {
     expect(() => new RAM(0x1000, 8).write32(0x1001, 0)).toThrow('Memory alignment error')
+    expect(() => new RAM(0x1000, 8).write32(0x1002, 0)).toThrow('Memory alignment error')
+    expect(() => new RAM(0x1000, 8).write32(0x1003, 0)).toThrow('Memory alignment error')
   })
 })
