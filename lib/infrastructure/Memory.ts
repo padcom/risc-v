@@ -79,7 +79,7 @@ export class RAM implements Memory {
     const n2 = this.bytes[address - this.base + 2] << 8
     const n3 = this.bytes[address - this.base + 3] << 0
 
-    return n0 | n1 | n2 | n3
+    return (n0 | n1 | n2 | n3) >>> 0
   }
 
   write32(address: uint32, value: uint16): void {
@@ -89,5 +89,21 @@ export class RAM implements Memory {
     this.bytes[address - this.base + 1] = (value & 0b00000000_11111111_00000000_00000000) >>> 16
     this.bytes[address - this.base + 2] = (value & 0b00000000_00000000_11111111_00000000) >>> 8
     this.bytes[address - this.base + 3] = (value & 0b00000000_00000000_00000000_11111111) >>> 0
+  }
+}
+
+export function dump(memory: Memory, from: number, to: number) {
+  const line = []
+
+  for (let i = 0; i < to - from; i++) {
+    line.push(memory.read8(from + i).toHex8())
+    if (line.length === 16) {
+      console.log(line.join(' '))
+      line.splice(0, line.length)
+    }
+  }
+
+  if (line.length > 0) {
+    console.log(line.join(' '))
   }
 }
