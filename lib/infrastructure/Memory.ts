@@ -2,6 +2,7 @@
 /* eslint-disable padding-line-between-statements */
 export type uint5  = number
 export type uint8  = number
+export type uint12 = number
 export type uint16 = number
 export type uint32 = number
 

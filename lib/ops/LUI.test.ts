@@ -21,19 +21,19 @@ describe('LUI - load upper immediate', () => {
   const cases: TestCase[] = [{
     instruction: 0b00000000000000000001_11111_0110111,
     value      : 0b00000000000000000001_00000_0000000,
-    register: 31,
+    register   : Registers.t6,
   }, {
-    instruction: 0b11111111111111111111_00001_0110111,
+    instruction: 0b11111111111111111111_00110_0110111,
     value      : 0b11111111111111111111_00000_0000000,
-    register: 1,
+    register   : Registers.t1,
   }, {
-    instruction: 0b10101010101010101010_00010_0110111,
+    instruction: 0b10101010101010101010_00111_0110111,
     value      : 0b10101010101010101010_00000_0000000,
-    register: 2,
+    register   : Registers.t2,
   }, {
-    instruction: 0b01010101010101010101_00011_0110111,
+    instruction: 0b01010101010101010101_11100_0110111,
     value      : 0b01010101010101010101_00000_0000000,
-    register: 3,
+    register   : Registers.t3,
   }]
 
   cases.forEach(({ instruction, value, register }) => {

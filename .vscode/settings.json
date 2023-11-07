@@ -1,12 +1,12 @@
 {
   "cSpell.words": [
     "ADDI",
+    "AUIPC",
     "funct",
     "risc",
     "shamt",
     "succ"
   ],
-  "testing.automaticallyOpenPeekView": "never",
   "editor.codeActionsOnSave": {
     "source.fixAll": true
   }
