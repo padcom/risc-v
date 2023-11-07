@@ -40,6 +40,22 @@ describe('BEQ - load upper immediate', () => {
     rs2I       : 0x1234,
     pcI        : 0x10000,
     pcO        : 0x10008,
+  }, {
+    instruction: 0b1_111111_00110_00101_000_1100_1_1100011,
+    rs1        : Registers.t0,
+    rs1I       : 0x1234,
+    rs2        : Registers.t1,
+    rs2I       : 0x1234,
+    pcI        : 0x10000,
+    pcO        : 0x0fff8,
+  }, {
+    instruction: 0b1_111111_00110_00101_000_1100_1_1100011,
+    rs1        : Registers.t0,
+    rs1I       : 0x1234,
+    rs2        : Registers.t1,
+    rs2I       : 0x1235,
+    pcI        : 0x10000,
+    pcO        : 0x10000,
   }]
 
   cases.forEach(({ instruction, rs1, rs1I, rs2, rs2I, pcI, pcO }) => {
