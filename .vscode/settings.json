@@ -2,6 +2,7 @@
   "cSpell.words": [
     "ADDI",
     "AUIPC",
+    "BGEU",
     "BLTU",
     "funct",
     "imms",
