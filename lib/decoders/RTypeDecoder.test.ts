@@ -1,3 +1,4 @@
+/* eslint-disable max-lines-per-function */
 import { describe, it, expect } from 'vitest'
 import { RTypeDecoder } from './RTypeDecoder'
 

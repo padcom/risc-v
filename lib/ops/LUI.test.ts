@@ -40,7 +40,7 @@ describe('LUI - load upper immediate', () => {
     it(`will load ${value} into register x${register}`, () => {
       const registers = new Registers()
       op.execute(instruction, registers)
-      expect(registers.x[register]).toBe(value)
+      expect(registers.x[register].s32u32()).toBe(value)
     })
   })
 })

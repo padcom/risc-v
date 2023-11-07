@@ -47,7 +47,7 @@ describe('AUIPC - add upper immediate to pc', () => {
       registers.pc = pc
       expect(op.recognize(instruction)).toBe(true)
       op.execute(instruction, registers)
-      expect(registers.x[register]).toBe(value)
+      expect(registers.x[register].s32u32()).toBe(value)
     })
   })
 })

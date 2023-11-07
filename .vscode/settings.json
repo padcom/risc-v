@@ -3,11 +3,14 @@
     "ADDI",
     "AUIPC",
     "funct",
+    "imms",
+    "immu",
     "risc",
     "shamt",
     "succ"
   ],
   "editor.codeActionsOnSave": {
     "source.fixAll": true
-  }
+  },
+  "testing.automaticallyOpenPeekView": "never"
 }
