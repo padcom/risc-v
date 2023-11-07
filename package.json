@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "vitest",
-    "test:watch": "vitest -w"
+    "test": "vitest run",
+    "test:watch": "vitest dev"
   },
   "keywords": [],
   "author": "Matthias Hryniszak <padcom@gmail.com>",
