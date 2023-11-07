@@ -5,6 +5,7 @@ export type uint8  = number
 export type uint12 = number
 export type uint16 = number
 export type uint32 = number
+export type int32  = number
 
 export interface Memory {
   read8(address: uint32): uint8;
@@ -39,7 +40,7 @@ export class RAM implements Memory {
   private validateAddressInRange(address: uint32, size: number) {
     if (address < this.base) throw new Error('Address below base')
     if (address > this.base + this.bytes.length - size) throw new Error('Address above available space')
-    if (address % size !== 0) throw new Error('Memory alignment error')
+    if (address % size !== 0) throw new Error(`Memory alignment error while accessing address ${address} in block size ${size}`)
   }
 
   read8(address: uint32): number {
