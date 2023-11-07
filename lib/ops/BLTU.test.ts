@@ -21,7 +21,7 @@ describe('BLTU - branch if less than unsigned', () => {
   }
 
   const cases: TestCase[] = [{
-    instruction: 0b0_000000_00110_00101_100_0100_0_1100011,
+    instruction: 0b0_000000_00110_00101_110_0100_0_1100011,
     rs1        : Registers.t0,
     rs1I       : 0x1233,
     rs2        : Registers.t1,
@@ -29,7 +29,7 @@ describe('BLTU - branch if less than unsigned', () => {
     pcI        : 0x10000,
     pcO        : 0x10008,
   }, {
-    instruction: 0b0_000000_00110_00101_100_0100_0_1100011,
+    instruction: 0b0_000000_00110_00101_110_0100_0_1100011,
     rs1        : Registers.t0,
     rs1I       : 0x1234,
     rs2        : Registers.t1,
@@ -37,7 +37,7 @@ describe('BLTU - branch if less than unsigned', () => {
     pcI        : 0x10000,
     pcO        : 0x10008,
   }, {
-    instruction: 0b0_000000_00110_00101_100_0100_0_1100011,
+    instruction: 0b0_000000_00110_00101_110_0100_0_1100011,
     rs1        : Registers.t0,
     rs1I       : 0x1234,
     rs2        : Registers.t1,
@@ -45,7 +45,7 @@ describe('BLTU - branch if less than unsigned', () => {
     pcI        : 0x10000,
     pcO        : 0x10000,
   }, {
-    instruction: 0b0_000000_00110_00101_100_0100_0_1100011,
+    instruction: 0b0_000000_00110_00101_110_0100_0_1100011,
     rs1        : Registers.t0,
     rs1I       : -0x1234,
     rs2        : Registers.t1,
@@ -53,7 +53,7 @@ describe('BLTU - branch if less than unsigned', () => {
     pcI        : 0x10000,
     pcO        : 0x10000,
   }, {
-    instruction: 0b1_111111_00110_00101_100_1100_1_1100011,
+    instruction: 0b1_111111_00110_00101_110_1100_1_1100011,
     rs1        : Registers.t0,
     rs1I       : 0x1233,
     rs2        : Registers.t1,
@@ -61,7 +61,7 @@ describe('BLTU - branch if less than unsigned', () => {
     pcI        : 0x10000,
     pcO        : 0x0fff8,
   }, {
-    instruction: 0b1_111111_00110_00101_100_1100_1_1100011,
+    instruction: 0b1_111111_00110_00101_110_1100_1_1100011,
     rs1        : Registers.t0,
     rs1I       : 0x1234,
     rs2        : Registers.t1,
@@ -69,7 +69,7 @@ describe('BLTU - branch if less than unsigned', () => {
     pcI        : 0x10000,
     pcO        : 0x0fff8,
   }, {
-    instruction: 0b1_111111_00110_00101_100_1100_1_1100011,
+    instruction: 0b1_111111_00110_00101_110_1100_1_1100011,
     rs1        : Registers.t0,
     rs1I       : 0x1234,
     rs2        : Registers.t1,
@@ -77,7 +77,7 @@ describe('BLTU - branch if less than unsigned', () => {
     pcI        : 0x10000,
     pcO        : 0x10000,
   }, {
-    instruction: 0b1_111111_00110_00101_100_1100_1_1100011,
+    instruction: 0b1_111111_00110_00101_110_1100_1_1100011,
     rs1        : Registers.t0,
     rs1I       : -0x1234,
     rs2        : Registers.t1,

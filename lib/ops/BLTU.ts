@@ -5,7 +5,7 @@ import { Operation } from './Operation'
 
 export class BLTU implements Operation {
   static OPCODE = 0b1100011
-  static FUNCT3 = 0b100
+  static FUNCT3 = 0b110
   decoder = new BTypeDecoder()
 
   recognize(instruction: uint32) {
