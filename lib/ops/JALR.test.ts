@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/type-annotation-spacing */
+/* eslint-disable no-multi-spaces */
 /* eslint-disable max-lines-per-function */
 /* eslint-disable key-spacing */
 import { describe, it, expect } from 'vitest'
@@ -10,18 +12,12 @@ describe('JALR - jump and link register', () => {
   const op = new JALR()
 
   interface TestCase {
-    /** instruction to execute */
     instruction: uint32
-    /** selected rs1 register */
-    rs1: uint5
-    /** initial value of rs1 register */
-    rs1I: uint32
-    /** value of pc register after operation */
-    pcO: uint32
-    /** selected rd register */
-    rd: uint5
-    /** value of rd register after operation */
-    rdO: uint32,
+    rs1        : uint5
+    rs1I       : uint32
+    pcO        : uint32
+    rd         : uint5
+    rdO        : uint32,
   }
 
   const cases: TestCase[] = [{
