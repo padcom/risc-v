@@ -21,7 +21,7 @@ export function immediate(
 
   it(`will execute ${instruction.toBin32()}`, () => {
     const registers = new Registers()
-    registers.x[rs1] = rs1I
+    registers.write(rs1, rs1I)
 
     op.execute(instruction, registers)
 
@@ -48,8 +48,8 @@ export function register(
 
   it(`will execute ${instruction.toBin32()}`, () => {
     const registers = new Registers()
-    registers.x[rs1] = rs1I.u32s32()
-    registers.x[rs2] = rs2I.u32s32()
+    registers.write(rs1, rs1I.u32s32())
+    registers.write(rs2, rs2I.u32s32())
 
     op.execute(instruction, registers)
 

@@ -47,14 +47,14 @@ describe('JAL - unconditional jump', () => {
 
   cases.forEach(({ instruction }) => { recognize(op, instruction) })
 
-  cases.forEach(({ instruction, pcI: pc, pcO: value, rd: register }) => {
-    it(`will jump to ${value} with register x${register} set to ${value})`, () => {
+  cases.forEach(({ instruction, pcI: pc, pcO: value, rd }) => {
+    it(`will jump to ${value} with register x${rd} set to ${value})`, () => {
       const registers = new Registers()
       registers.pc = pc
 
       op.execute(instruction, registers)
 
-      expect(registers.x[register]).toBe(value)
+      expect(registers.read(rd)).toBe(value)
       expect(registers.pc).toBe(value)
     })
   })

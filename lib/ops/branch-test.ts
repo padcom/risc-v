@@ -23,8 +23,8 @@ export function test(
 
   it(`will execute ${instruction.toBin32()}`, () => {
     const registers = new Registers()
-    registers.x[rs1] = rs1I
-    registers.x[rs2] = rs2I
+    registers.write(rs1, rs1I)
+    registers.write(rs2, rs2I)
     registers.pc = pcI
 
     op.execute(instruction, registers)

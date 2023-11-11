@@ -41,7 +41,7 @@ describe('JALR - jump and link register', () => {
   cases.forEach(({ instruction, rs1, rs1I, pcO, rd, rdO }) => {
     it(`will execute ${instruction.toBin32()}`, () => {
       const registers = new Registers()
-      registers.x[rs1] = rs1I
+      registers.write(rs1, rs1I)
 
       op.execute(instruction, registers)
 

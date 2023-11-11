@@ -42,14 +42,14 @@ describe('AUIPC - add upper immediate to pc', () => {
 
   cases.forEach(({ instruction }) => { recognize(op, instruction) })
 
-  cases.forEach(({ instruction, pcI, rs1O: value, rs1: register }) => {
-    it(`will load ${value} into register x${register}`, () => {
+  cases.forEach(({ instruction, pcI, rs1O: value, rs1 }) => {
+    it(`will load ${value} into register x${rs1}`, () => {
       const registers = new Registers()
       registers.pc = pcI
 
       op.execute(instruction, registers)
 
-      expect(registers.x[register].s32u32()).toBe(value)
+      expect(registers.read(rs1).s32u32()).toBe(value)
     })
   })
 })
