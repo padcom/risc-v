@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/type-annotation-spacing */
+/* eslint-disable no-multi-spaces */
 /* eslint-disable max-lines-per-function */
 /* eslint-disable key-spacing */
 import { describe, it, expect } from 'vitest'
@@ -11,9 +13,9 @@ describe('JAL - unconditional jump', () => {
 
   interface TestCase {
     instruction: uint32
-    rd: uint5
-    pcI: uint32
-    pcO: uint32
+    rd         : uint5
+    pcI        : uint32
+    pcO        : uint32
   }
 
   const cases: TestCase[] = [{

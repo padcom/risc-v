@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/type-annotation-spacing */
+/* eslint-disable no-multi-spaces */
 /* eslint-disable max-lines-per-function */
 /* eslint-disable key-spacing */
 import { describe, it, expect } from 'vitest'
@@ -11,9 +13,9 @@ describe('AUIPC - add upper immediate to pc', () => {
 
   interface TestCase {
     instruction: uint32
-    pcI: uint12
-    rs1: uint5
-    rs1O: uint32
+    pcI        : uint12
+    rs1        : uint5
+    rs1O       : uint32
   }
 
   const cases: TestCase[] = [{

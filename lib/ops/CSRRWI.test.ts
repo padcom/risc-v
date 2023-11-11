@@ -29,5 +29,6 @@ describe('CSRRWI - atomic read uimm[4:0] and write to CSR', () => {
     csrI       : 0b01010101,
     csrO       : 0b01010101,
   }]
+
   cases.forEach(testCase => { test(op, testCase) })
 })
