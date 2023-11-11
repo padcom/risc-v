@@ -1,6 +1,7 @@
 {
   "cSpell.words": [
     "ADDI",
+    "ANDI",
     "AUIPC",
     "BGEU",
     "BLTU",
@@ -11,7 +12,8 @@
     "risc",
     "shamt",
     "SLTI",
-    "succ"
+    "succ",
+    "XORI"
   ],
   "editor.codeActionsOnSave": {
     "source.fixAll": true
