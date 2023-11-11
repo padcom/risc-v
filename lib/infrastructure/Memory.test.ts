@@ -17,7 +17,7 @@ describe('RAM', () => {
   })
 
   it('will read 16-bit value', () => {
-    const memory = new RAM(0x1000, 2).load(0x1000, [0x03, 0x04])
+    const memory = new RAM(0x1000, 2).load(0x1000, [0x04, 0x03])
     const actual = memory.read16(0x1000)
     expect(actual).toBe(0x0304)
   })
@@ -30,7 +30,7 @@ describe('RAM', () => {
   })
 
   it('will read 32-bit value', () => {
-    const memory = new RAM(0x1000, 4).load(0x1000, [0x07, 0x08, 0x09, 0x0a])
+    const memory = new RAM(0x1000, 4).load(0x1000, [0x0a, 0x09, 0x08, 0x07])
     const actual = memory.read32(0x1000)
     expect(actual).toBe(0x0708090a)
   })

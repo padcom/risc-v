@@ -58,8 +58,8 @@ export class RAM implements Memory {
   read16(address: uint32): number {
     this.validateAddressInRange(address, 2)
 
-    const n0 = this.bytes[address - this.base + 0] << 8
-    const n1 = this.bytes[address - this.base + 1] << 0
+    const n0 = this.bytes[address - this.base + 0] << 0
+    const n1 = this.bytes[address - this.base + 1] << 8
 
     return n0 | n1
   }
@@ -67,17 +67,17 @@ export class RAM implements Memory {
   write16(address: uint32, value: uint16): void {
     this.validateAddressInRange(address, 2)
 
-    this.bytes[address - this.base + 0] = (value & 0b11111111_00000000) >>> 8
-    this.bytes[address - this.base + 1] = (value & 0b00000000_11111111) >>> 0
+    this.bytes[address - this.base + 0] = (value & 0b00000000_11111111) >>> 0
+    this.bytes[address - this.base + 1] = (value & 0b11111111_00000000) >>> 8
   }
 
   read32(address: uint32): number {
     this.validateAddressInRange(address, 4)
 
-    const n0 = this.bytes[address - this.base + 0] << 24
-    const n1 = this.bytes[address - this.base + 1] << 16
-    const n2 = this.bytes[address - this.base + 2] << 8
-    const n3 = this.bytes[address - this.base + 3] << 0
+    const n0 = this.bytes[address - this.base + 0] << 0
+    const n1 = this.bytes[address - this.base + 1] << 8
+    const n2 = this.bytes[address - this.base + 2] << 16
+    const n3 = this.bytes[address - this.base + 3] << 24
 
     return (n0 | n1 | n2 | n3) >>> 0
   }
@@ -85,10 +85,10 @@ export class RAM implements Memory {
   write32(address: uint32, value: uint16): void {
     this.validateAddressInRange(address, 4)
 
-    this.bytes[address - this.base + 0] = (value & 0b11111111_00000000_00000000_00000000) >>> 24
-    this.bytes[address - this.base + 1] = (value & 0b00000000_11111111_00000000_00000000) >>> 16
-    this.bytes[address - this.base + 2] = (value & 0b00000000_00000000_11111111_00000000) >>> 8
-    this.bytes[address - this.base + 3] = (value & 0b00000000_00000000_00000000_11111111) >>> 0
+    this.bytes[address - this.base + 0] = (value & 0b00000000_00000000_00000000_11111111) >>> 0
+    this.bytes[address - this.base + 1] = (value & 0b00000000_00000000_11111111_00000000) >>> 8
+    this.bytes[address - this.base + 2] = (value & 0b00000000_11111111_00000000_00000000) >>> 16
+    this.bytes[address - this.base + 3] = (value & 0b11111111_00000000_00000000_00000000) >>> 24
   }
 }
 
