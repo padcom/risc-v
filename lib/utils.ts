@@ -12,6 +12,7 @@ interface Number {
   toBin16(): string
   toBin32(): string
 
+  u8u32(): number
   u8s32(): number
   u12s32(): number
   u21s32(): number
@@ -50,6 +51,10 @@ Number.prototype.toBin16 = function() {
 
 Number.prototype.toBin32 = function() {
   return this.toBin(32)
+}
+
+Number.prototype.u8u32 = function(this: number) {
+  return this & 0xff
 }
 
 Number.prototype.u8s32 = function(this: number) {

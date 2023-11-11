@@ -5,10 +5,16 @@
     "AUIPC",
     "BGEU",
     "BLTU",
+    "CSRRC",
+    "CSRRCI",
+    "CSRRS",
+    "CSRRSI",
+    "CSRRW",
+    "CSRRWI",
+    "csrs",
     "FENCEI",
     "funct",
     "imms",
-    "uimm",
     "JALR",
     "risc",
     "shamt",
@@ -18,7 +24,9 @@
     "SRAI",
     "SRLI",
     "succ",
-    "XORI"
+    "uimm",
+    "XORI",
+    "zimm"
   ],
   "editor.codeActionsOnSave": {
     "source.fixAll": true
