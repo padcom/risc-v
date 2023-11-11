@@ -2,12 +2,12 @@
 import { describe } from 'vitest'
 import { SRLI } from './SRLI'
 import { Registers } from '../infrastructure/Registers'
-import { AluTestCase, test } from './alu-test'
+import { AluImmediateTestCase, immediate as test } from './alu-test'
 
 describe('SRLI - shift right rs1 by imm[4:0] store in rd', () => {
   const op = new SRLI()
 
-  const cases: AluTestCase[] = [{
+  const cases: AluImmediateTestCase[] = [{
     instruction: 0b000000000000_00101_101_00110_0010011,
     rs1        : Registers.t0,
     rs1I       : 0b00000000_00000000_00000000_00000001,

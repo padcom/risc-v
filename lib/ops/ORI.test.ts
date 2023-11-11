@@ -2,12 +2,12 @@
 import { describe } from 'vitest'
 import { ORI } from './ORI'
 import { Registers } from '../infrastructure/Registers'
-import { AluTestCase, test } from './alu-test'
+import { AluImmediateTestCase, immediate as test } from './alu-test'
 
 describe('ORI - bitwise or on rs1 and and sign-extended 12-bit imm and place the result in rd', () => {
   const op = new ORI()
 
-  const cases: AluTestCase[] = [{
+  const cases: AluImmediateTestCase[] = [{
     instruction: 0b010101010101_00101_110_00110_0010011,
     rs1        : Registers.t0,
     rs1I       : 0b10101010_10101010_10101010_10101010,

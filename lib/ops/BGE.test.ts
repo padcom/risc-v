@@ -6,6 +6,7 @@ import { describe, it, expect } from 'vitest'
 import { BGE } from './BGE'
 import { Registers } from '../infrastructure/Registers'
 import { uint32, uint5 } from '../infrastructure/Memory'
+import { recognize } from './common-test'
 
 describe('BGE - branch if greater than', () => {
   const op = new BGE()
@@ -86,14 +87,17 @@ describe('BGE - branch if greater than', () => {
     pcO        : 0x10000,
   }]
 
+  cases.forEach(({ instruction }) => { recognize(op, instruction) })
+
   cases.forEach(({ instruction, rs1, rs1I, rs2, rs2I, pcI, pcO }) => {
     it(`will execute ${instruction.toBin32()}`, () => {
       const registers = new Registers()
       registers.x[rs1] = rs1I
       registers.x[rs2] = rs2I
       registers.pc = pcI
-      expect(op.recognize(instruction)).toBe(true)
+
       op.execute(instruction, registers)
+
       expect(registers.pc).toBe(pcO)
     })
   })

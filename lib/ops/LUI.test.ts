@@ -4,6 +4,7 @@ import { describe, it, expect } from 'vitest'
 import { LUI } from './LUI'
 import { Registers } from '../infrastructure/Registers'
 import { uint32, uint5 } from '../infrastructure/Memory'
+import { recognize } from './common-test'
 
 describe('LUI - load upper immediate', () => {
   const op = new LUI()
@@ -32,11 +33,14 @@ describe('LUI - load upper immediate', () => {
     rs1O       : 0b01010101010101010101_00000_0000000,
   }]
 
+  cases.forEach(({ instruction }) => { recognize(op, instruction) })
+
   cases.forEach(({ instruction, rs1, rs1O }) => {
     it(`will load ${rs1O} into register x${rs1}`, () => {
       const registers = new Registers()
-      expect(op.recognize(instruction)).toBe(true)
+
       op.execute(instruction, registers)
+
       expect(registers.x[rs1].s32u32()).toBe(rs1O)
     })
   })

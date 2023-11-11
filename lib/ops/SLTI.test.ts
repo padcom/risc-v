@@ -6,6 +6,7 @@ import { describe, it, expect } from 'vitest'
 import { SLTI } from './SLTI'
 import { Registers } from '../infrastructure/Registers'
 import { uint32, uint5 } from '../infrastructure/Memory'
+import { recognize } from './common-test'
 
 describe('SLTI - set less than immediate', () => {
   const op = new SLTI()
@@ -44,12 +45,15 @@ describe('SLTI - set less than immediate', () => {
     rdO        : 0x0001,
   }]
 
+  cases.forEach(({ instruction }) => { recognize(op, instruction) })
+
   cases.forEach(({ instruction, rs1, rs1I, rd, rdO }) => {
     it(`will execute ${instruction.toBin32()}`, () => {
       const registers = new Registers()
       registers.x[rs1] = rs1I
-      expect(op.recognize(instruction)).toBe(true)
+
       op.execute(instruction, registers)
+
       expect(registers.x[rd]).toBe(rdO)
     })
   })

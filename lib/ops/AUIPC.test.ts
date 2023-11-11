@@ -4,6 +4,7 @@ import { describe, it, expect } from 'vitest'
 import { AUIPC } from './AUIPC'
 import { Registers } from '../infrastructure/Registers'
 import { uint5, uint12, uint32 } from '../infrastructure/Memory'
+import { recognize } from './common-test'
 
 describe('AUIPC - add upper immediate to pc', () => {
   const op = new AUIPC()
@@ -37,12 +38,15 @@ describe('AUIPC - add upper immediate to pc', () => {
     rs1O       : 0b01010101010101010101_0010_0011_0100,
   }]
 
+  cases.forEach(({ instruction }) => { recognize(op, instruction) })
+
   cases.forEach(({ instruction, pcI, rs1O: value, rs1: register }) => {
     it(`will load ${value} into register x${register}`, () => {
       const registers = new Registers()
       registers.pc = pcI
-      expect(op.recognize(instruction)).toBe(true)
+
       op.execute(instruction, registers)
+
       expect(registers.x[register].s32u32()).toBe(value)
     })
   })

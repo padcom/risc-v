@@ -4,6 +4,7 @@ import { describe, it, expect } from 'vitest'
 import { SB } from './SB'
 import { Registers } from '../infrastructure/Registers'
 import { RAM, int32, uint32, uint5 } from '../infrastructure/Memory'
+import { recognize } from './common-test'
 
 describe('SB - save byte from rs2 to [rs1]', () => {
   const op = new SB()
@@ -39,14 +40,17 @@ describe('SB - save byte from rs2 to [rs1]', () => {
     expected   : 0xFF,
   }]
 
+  cases.forEach(({ instruction }) => { recognize(op, instruction) })
+
   cases.forEach(({ instruction, rs1, rs1I, rs2, rs2I, base, offset, expected }) => {
     it(`will store rs2 to address [rs1+imm]`, () => {
       const registers = new Registers()
       registers.x[rs1] = rs1I
       registers.x[rs2] = rs2I
       const memory = new RAM(base, 0x10)
-      expect(op.recognize(instruction)).toBe(true)
+
       op.execute(instruction, registers, memory)
+
       expect(memory.read8(rs1I + offset)).toBe(expected)
     })
   })

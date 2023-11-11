@@ -4,6 +4,7 @@ import { describe, it, expect } from 'vitest'
 import { JAL } from './JAL'
 import { Registers } from '../infrastructure/Registers'
 import { uint32, uint5 } from '../infrastructure/Memory'
+import { recognize } from './common-test'
 
 describe('JAL - unconditional jump', () => {
   const op = new JAL()
@@ -42,12 +43,13 @@ describe('JAL - unconditional jump', () => {
     rd         : Registers.t0,
   }]
 
+  cases.forEach(({ instruction }) => { recognize(op, instruction) })
+
   cases.forEach(({ instruction, pcI: pc, pcO: value, rd: register }) => {
     it(`will jump to ${value} with register x${register} set to ${value})`, () => {
       const registers = new Registers()
       registers.pc = pc
 
-      expect(op.recognize(instruction)).toBe(true)
       op.execute(instruction, registers)
 
       expect(registers.x[register]).toBe(value)

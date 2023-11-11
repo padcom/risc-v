@@ -2,12 +2,12 @@
 import { describe } from 'vitest'
 import { ADDI } from './ADDI'
 import { Registers } from '../infrastructure/Registers'
-import { AluTestCase, test } from './alu-test'
+import { AluImmediateTestCase, immediate as test } from './alu-test'
 
 describe('ADDI - add imm to rs1 and store in rd', () => {
   const op = new ADDI()
 
-  const cases: AluTestCase[] = [{
+  const cases: AluImmediateTestCase[] = [{
     instruction: 0b000000000001_00101_000_00110_0010011,
     rs1        : Registers.t0,
     rs1I       : 0x1234,

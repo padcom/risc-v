@@ -4,6 +4,7 @@ import { describe, it, expect } from 'vitest'
 import { LHU } from './LHU'
 import { Registers } from '../infrastructure/Registers'
 import { RAM, uint32, uint5 } from '../infrastructure/Memory'
+import { recognize } from './common-test'
 
 describe('LHU - load unsigned word to rd', () => {
   const op = new LHU()
@@ -39,14 +40,17 @@ describe('LHU - load unsigned word to rd', () => {
     expected   : 0x0000FFFF,
   }]
 
+  cases.forEach(({ instruction }) => { recognize(op, instruction) })
+
   cases.forEach(({ instruction, rs1, rs1I, rd, base, offset, value, expected }) => {
     it(`will load from address 0x10000+${rs1I} into register x${rd}`, () => {
       const registers = new Registers()
       registers.x[rs1] = rs1I
       const memory = new RAM(base, 0x10)
       memory.write16(base + offset, value)
-      expect(op.recognize(instruction)).toBe(true)
+
       op.execute(instruction, registers, memory)
+
       expect(registers.x[rd]).toBe(expected)
     })
   })

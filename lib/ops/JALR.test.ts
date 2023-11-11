@@ -4,6 +4,7 @@ import { describe, it, expect } from 'vitest'
 import { JALR } from './JALR'
 import { Registers } from '../infrastructure/Registers'
 import { uint32, uint5 } from '../infrastructure/Memory'
+import { recognize } from './common-test'
 
 describe('JALR - jump and link register', () => {
   const op = new JALR()
@@ -39,12 +40,13 @@ describe('JALR - jump and link register', () => {
     rdO        : 0x00001002,
   }]
 
+  cases.forEach(({ instruction }) => { recognize(op, instruction) })
+
   cases.forEach(({ instruction, rs1, rs1I, pcO, rd, rdO }) => {
     it(`will execute ${instruction.toBin32()}`, () => {
       const registers = new Registers()
       registers.x[rs1] = rs1I
 
-      expect(op.recognize(instruction)).toBe(true)
       op.execute(instruction, registers)
 
       expect(registers.pc).toBe(pcO)

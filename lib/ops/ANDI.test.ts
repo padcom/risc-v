@@ -2,12 +2,12 @@
 import { describe } from 'vitest'
 import { ANDI } from './ANDI'
 import { Registers } from '../infrastructure/Registers'
-import { AluTestCase, test } from './alu-test'
+import { AluImmediateTestCase, immediate as test } from './alu-test'
 
 describe('ANDI - bitwise and on rs1 and and sign-extended 12-bit imm and place the result in rd', () => {
   const op = new ANDI()
 
-  const cases: AluTestCase[] = [{
+  const cases: AluImmediateTestCase[] = [{
     instruction: 0b010101010101_00101_111_00110_0010011,
     rs1        : Registers.t0,
     rs1I       : 0b11111111_11111111_11111111_11111111,
