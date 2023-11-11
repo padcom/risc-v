@@ -11,7 +11,10 @@
     "JALR",
     "risc",
     "shamt",
+    "SLLI",
     "SLTI",
+    "SRAI",
+    "SRLI",
     "succ",
     "XORI"
   ],
