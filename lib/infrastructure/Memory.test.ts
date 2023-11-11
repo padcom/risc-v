@@ -4,7 +4,7 @@ import { RAM } from './Memory'
 
 describe('RAM', () => {
   it('will read 8-bit value', () => {
-    const memory = new RAM(0x1000, 1).load(0x1000, [0x01])
+    const memory = new RAM(0x1000, 1).load(0x1000, Buffer.from([0x01]))
     const actual = memory.read8(0x1000)
     expect(actual).toBe(1)
   })
@@ -17,7 +17,7 @@ describe('RAM', () => {
   })
 
   it('will read 16-bit value', () => {
-    const memory = new RAM(0x1000, 2).load(0x1000, [0x04, 0x03])
+    const memory = new RAM(0x1000, 2).load(0x1000, Buffer.from([0x04, 0x03]))
     const actual = memory.read16(0x1000)
     expect(actual).toBe(0x0304)
   })
@@ -30,7 +30,7 @@ describe('RAM', () => {
   })
 
   it('will read 32-bit value', () => {
-    const memory = new RAM(0x1000, 4).load(0x1000, [0x0a, 0x09, 0x08, 0x07])
+    const memory = new RAM(0x1000, 4).load(0x1000, Buffer.from([0x0a, 0x09, 0x08, 0x07]))
     const actual = memory.read32(0x1000)
     expect(actual).toBe(0x0708090a)
   })
@@ -43,11 +43,11 @@ describe('RAM', () => {
   })
 
   it('will throw an error when loading values below available space', () => {
-    expect(() => new RAM(0x1000, 1).load(0x0fff, [0x01])).toThrow('Memory underflow')
+    expect(() => new RAM(0x1000, 1).load(0x0fff, Buffer.from([0x01]))).toThrow('Memory underflow')
   })
 
   it('will throw an error when loading values above available space', () => {
-    expect(() => new RAM(0x1000, 1).load(0x1000, [0x01, 0x02])).toThrow('Memory overflow')
+    expect(() => new RAM(0x1000, 1).load(0x1000, Buffer.from([0x01, 0x02]))).toThrow('Memory overflow')
   })
 
   it('will throw an error when accessing uint8 below available space', () => {

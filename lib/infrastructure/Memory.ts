@@ -8,6 +8,11 @@ export type uint32 = number
 export type int32  = number
 
 export interface Memory {
+  base: number
+
+  load(base: number, contents: Buffer): Memory
+  dump(from: number, length: number): Memory
+
   read8(address: uint32): uint8;
   write8(address: uint32, value: uint8): void;
   read16(address: uint32): uint16;
@@ -19,19 +24,40 @@ export interface Memory {
 export class RAM implements Memory {
   private readonly bytes: Uint8Array
 
-  constructor(private readonly base: number, size: number) {
+  constructor(
+    public readonly base: number,
+    public readonly size: number,
+  ) {
     this.bytes = new Uint8Array(size)
   }
 
-  load(base: number, bytes: uint8[]) {
+  load(base: number, bytes: Buffer) {
     if (base < this.base) throw new Error('Memory underflow')
 
-    for (let i = 0; i < bytes.length; i++) {
+    for (let i = 0; i < bytes.byteLength; i++) {
       if (base + i < this.base + this.bytes.length) {
         this.bytes[base - this.base + i] = bytes[i]
       } else {
         throw new Error('Memory overflow')
       }
+    }
+
+    return this
+  }
+
+  dump(from: number, length: number): Memory {
+    const line = []
+
+    for (let i = 0; i < length; i++) {
+      line.push(this.read8(from + i).toHex8())
+      if (line.length === 16) {
+        console.log(line.join(' '))
+        line.splice(0, line.length)
+      }
+    }
+
+    if (line.length > 0) {
+      console.log(line.join(' '))
     }
 
     return this
@@ -98,21 +124,5 @@ export class CSR extends RAM {
 
   constructor() {
     super(CSR.BASE, CSR.LENGTH)
-  }
-}
-
-export function dump(memory: Memory, from: number, to: number) {
-  const line = []
-
-  for (let i = 0; i < to - from; i++) {
-    line.push(memory.read8(from + i).toHex8())
-    if (line.length === 16) {
-      console.log(line.join(' '))
-      line.splice(0, line.length)
-    }
-  }
-
-  if (line.length > 0) {
-    console.log(line.join(' '))
   }
 }
