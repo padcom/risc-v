@@ -9,10 +9,10 @@ export class SRAI implements Operation {
   decoder = new ITypeDecoder()
 
   recognize(instruction: uint32) {
-    const { opcode, funct3, immu } = this.decoder.decode(instruction)
+    const { opcode, funct3, uimm } = this.decoder.decode(instruction)
 
     // eslint-disable-next-line no-extra-parens
-    return opcode === SRAI.OPCODE && funct3 === SRAI.FUNCT3 && (immu & 0b010000000000) !== 0
+    return opcode === SRAI.OPCODE && funct3 === SRAI.FUNCT3 && (uimm & 0b010000000000) !== 0
   }
 
   execute(instruction: uint32, registers: Registers) {

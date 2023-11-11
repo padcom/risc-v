@@ -15,8 +15,8 @@ describe('J-type decoder', () => {
   })
 
   it('will decode imm', () => {
-    const { immu, imm } = decoder.decode(0xffffffff)
-    expect(immu).toBe(0b111111111111111111110)
+    const { uimm, imm } = decoder.decode(0xffffffff)
+    expect(uimm).toBe(0b111111111111111111110)
     expect(imm).toBe(-2)
   })
 })

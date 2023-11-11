@@ -10,9 +10,9 @@ export class JTypeDecoder extends Decoder {
     const imm1 = (instruction & 0b0_0000000000_0_11111111_00000_0000000) >>> 0
     const imm2 = (instruction & 0b0_0000000000_1_00000000_00000_0000000) >>> 9
     const imm3 = (instruction & 0b0_1111111111_0_00000000_00000_0000000) >>> 20
-    const immu = imm0 | imm1 | imm2 | imm3
-    const imm  = immu.u21s32()
+    const uimm = imm0 | imm1 | imm2 | imm3
+    const imm  = uimm.u21s32()
 
-    return { immu, imm, rd, opcode }
+    return { uimm, imm, rd, opcode }
   }
 }

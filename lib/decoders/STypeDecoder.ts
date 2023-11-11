@@ -10,9 +10,9 @@ export class STypeDecoder extends Decoder {
     const rs2    = (instruction & 0b0000000_11111_00000_000_00000_0000000) >>> 20
     const imm0   = (instruction & 0b1111111_00000_00000_000_00000_0000000) >>> 20
     const imm1   = (instruction & 0b0000000_00000_00000_000_11111_0000000) >>> 7
-    const immu   = imm0 | imm1
-    const imm    = immu.u12s32()
+    const uimm   = imm0 | imm1
+    const imm    = uimm.u12s32()
 
-    return { immu, imm, rs2, rs1, funct3, opcode }
+    return { uimm, imm, rs2, rs1, funct3, opcode }
   }
 }

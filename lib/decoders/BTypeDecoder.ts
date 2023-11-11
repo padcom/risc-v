@@ -13,9 +13,9 @@ export class BTypeDecoder extends Decoder {
     const imm1   = (instruction & 0b0_000000_00000_00000_000_0000_1_0000000) << 3
     const imm2   = (instruction & 0b0_111111_00000_00000_000_0000_0_0000000) >>> 21
     const imm3   = (instruction & 0b0_000000_00000_00000_000_1111_0_0000000) >>> 8
-    const immu   = (imm0 | imm1 | imm2 | imm3) << 1
-    const imm    = immu.u12s32()
+    const uimm   = (imm0 | imm1 | imm2 | imm3) << 1
+    const imm    = uimm.u12s32()
 
-    return { immu, imm, rs2, rs1, funct3, opcode }
+    return { uimm, imm, rs2, rs1, funct3, opcode }
   }
 }

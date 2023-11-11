@@ -8,7 +8,7 @@
     "FENCEI",
     "funct",
     "imms",
-    "immu",
+    "uimm",
     "JALR",
     "risc",
     "shamt",
