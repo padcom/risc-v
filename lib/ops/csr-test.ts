@@ -4,7 +4,7 @@ import { it, expect } from 'vitest'
 import { Registers } from '../infrastructure/Registers'
 import { uint12, uint32, uint5, uint8 } from '../infrastructure/Memory'
 import { recognize } from './common-test'
-import { CSR } from '../infrastructure/CSR'
+import { CSR } from '../infrastructure/Memory'
 
 export interface CsrImmediateTestCase {
   instruction: uint32
