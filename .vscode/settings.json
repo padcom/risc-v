@@ -5,6 +5,7 @@
     "AUIPC",
     "BGEU",
     "BLTU",
+    "FENCEI",
     "funct",
     "imms",
     "immu",
