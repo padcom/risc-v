@@ -13,6 +13,7 @@
     "shamt",
     "SLLI",
     "SLTI",
+    "SLTU",
     "SRAI",
     "SRLI",
     "succ",
