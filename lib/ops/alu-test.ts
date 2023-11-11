@@ -25,7 +25,7 @@ export function immediate(
 
     op.execute(instruction, registers)
 
-    expect(registers.x[rd]).toBe(rdO.u32s32())
+    expect(registers.read(rd)).toBe(rdO.u32s32())
   })
 }
 
@@ -55,11 +55,11 @@ export function register(
 
     if (debug) {
       console.log('ins', instruction.toBin32())
-      console.log('rs1', registers.x[rs1].toBin32())
-      console.log('rs2', registers.x[rs2].toBin32())
-      console.log('rd ', registers.x[rd].toBin32())
+      console.log('rs1', registers.read(rs1).toBin32())
+      console.log('rs2', registers.read(rs2).toBin32())
+      console.log('rd ', registers.read(rd).toBin32())
     }
 
-    expect(registers.x[rd]).toBe(rdO.u32s32())
+    expect(registers.read(rd)).toBe(rdO.u32s32())
   })
 }

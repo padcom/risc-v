@@ -41,7 +41,7 @@ describe('LUI - load upper immediate', () => {
 
       op.execute(instruction, registers)
 
-      expect(registers.x[rs1].s32u32()).toBe(rs1O)
+      expect(registers.read(rs1).s32u32()).toBe(rs1O)
     })
   })
 })

@@ -16,6 +16,6 @@ export class SB implements Operation {
 
   execute(instruction: uint32, registers: Registers, memory: Memory) {
     const { rs1, rs2, imm } = this.decoder.decode(instruction)
-    memory.write8(registers.x[rs1] + imm, registers.x[rs2] & 0xff)
+    memory.write8(registers.read(rs1) + imm, registers.read(rs2) & 0xff)
   }
 }

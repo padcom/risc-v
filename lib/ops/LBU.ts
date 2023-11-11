@@ -16,6 +16,6 @@ export class LBU implements Operation {
 
   execute(instruction: uint32, registers: Registers, memory: Memory) {
     const { rd, rs1, imm } = this.decoder.decode(instruction)
-    registers.x[rd] = memory.read8(registers.x[rs1] + imm)
+    registers.write(rd, memory.read8(registers.read(rs1) + imm))
   }
 }

@@ -18,7 +18,7 @@ export class CSRRSI implements Operation {
     const { rs1: zimm, rd, imm: csr } = this.decoder.decode(instruction)
 
     const value = memory.read8(csr)
-    registers.x[rd] = value.u8u32()
+    registers.write(rd, value.u8u32())
 
     if (zimm !== 0) {
       // eslint-disable-next-line no-extra-parens

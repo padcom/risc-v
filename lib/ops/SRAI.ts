@@ -17,6 +17,6 @@ export class SRAI implements Operation {
 
   execute(instruction: uint32, registers: Registers) {
     const { rs1, rd, imm } = this.decoder.decode(instruction)
-    registers.x[rd] = registers.x[rs1] >> (imm & 31)
+    registers.write(rd, registers.read(rs1) >> (imm & 31))
   }
 }

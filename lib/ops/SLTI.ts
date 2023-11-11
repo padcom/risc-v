@@ -16,6 +16,6 @@ export class SLTI implements Operation {
 
   execute(instruction: uint32, registers: Registers) {
     const { rs1, rd, imm } = this.decoder.decode(instruction)
-    registers.x[rd] = registers.x[rs1].u32s32() < imm ? 1 : 0
+    registers.write(rd, registers.read(rs1).u32s32() < imm ? 1 : 0)
   }
 }

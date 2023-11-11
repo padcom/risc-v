@@ -16,6 +16,6 @@ export class LH implements Operation {
 
   execute(instruction: uint32, registers: Registers, memory: Memory) {
     const { rd, rs1, imm } = this.decoder.decode(instruction)
-    registers.x[rd] = memory.read16(registers.x[rs1] + imm).u16s32()
+    registers.write(rd, memory.read16(registers.read(rs1) + imm).u16s32())
   }
 }

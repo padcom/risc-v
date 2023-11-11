@@ -16,6 +16,6 @@ export class AUIPC implements Operation {
 
   execute(instruction: uint32, registers: Registers) {
     const { rd, imm } = AUIPC.decoder.decode(instruction)
-    registers.x[rd] = imm + registers.pc
+    registers.write(rd, imm + registers.pc)
   }
 }

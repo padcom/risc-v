@@ -19,8 +19,8 @@ export class CSRRW implements Operation {
 
     if (rd !== 0) {
       const value = memory.read8(csr).u8u32()
-      memory.write8(csr, registers.x[rs1])
-      registers.x[rd] = value
+      memory.write8(csr, registers.read(rs1))
+      registers.write(rd, value)
     }
   }
 }

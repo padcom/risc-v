@@ -15,6 +15,6 @@ export class LUI implements Operation {
 
   execute(instruction: uint32, registers: Registers) {
     const { rd, imm } = this.decoder.decode(instruction)
-    registers.x[rd] = imm
+    registers.write(rd, imm)
   }
 }

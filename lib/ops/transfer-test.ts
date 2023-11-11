@@ -25,13 +25,13 @@ export function load(
 
   it(`will execute ${instruction.toBin32()}`, () => {
     const registers = new Registers()
-    registers.x[rs1] = rs1I
+    registers.write(rs1, rs1I)
     const memory = new RAM(base, 0x10)
     memory[writer](base + offset, value)
 
     op.execute(instruction, registers, memory)
 
-    expect(registers.x[rd]).toBe(expected)
+    expect(registers.read(rd)).toBe(expected)
   })
 }
 
@@ -55,8 +55,8 @@ export function save(
 
   it(`will execute ${instruction.toBin32()}`, () => {
     const registers = new Registers()
-    registers.x[rs1] = rs1I
-    registers.x[rs2] = rs2I
+    registers.write(rs1, rs1I)
+    registers.write(rs2, rs2I)
     const memory = new RAM(base, 0x10)
 
     op.execute(instruction, registers, memory)

@@ -1,10 +1,18 @@
 /* eslint-disable no-multi-spaces */
 /* eslint-disable @typescript-eslint/type-annotation-spacing */
-import { uint32 } from './Memory'
+import { int32, uint32, uint5 } from './Memory'
 
 export class Registers {
-  pc: uint32   = 0
-  x : uint32[] = new Array(32).fill(0)
+  public pc: uint32   = 0
+  private x: uint32[] = new Array(32).fill(0)
+
+  read(index: uint5): int32 {
+    return index === 0 ? 0 : this.x[index]
+  }
+
+  write(index: uint5, value: int32) {
+    if (index > 0) this.x[index] = value
+  }
 
   static readonly zero = 0
   static readonly ra   = 1

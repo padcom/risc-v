@@ -17,6 +17,6 @@ export class JAL implements Operation {
     const { rd, imm } = this.decoder.decode(instruction)
     // eslint-disable-next-line operator-assignment
     registers.pc = (registers.pc + imm & 0xffffffff).s32u32()
-    registers.x[rd] = registers.pc
+    registers.write(rd, registers.pc)
   }
 }

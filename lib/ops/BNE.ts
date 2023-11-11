@@ -16,7 +16,7 @@ export class BNE implements Operation {
 
   execute(instruction: uint32, registers: Registers) {
     const { rs1, rs2, imm } = this.decoder.decode(instruction)
-    if (registers.x[rs1] !== registers.x[rs2]) {
+    if (registers.read(rs1) !== registers.read(rs2)) {
       registers.pc += imm
     }
   }

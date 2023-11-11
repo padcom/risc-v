@@ -17,7 +17,7 @@ export class JALR implements Operation {
   execute(instruction: uint32, registers: Registers) {
     const { rd, rs1, imm } = this.decoder.decode(instruction)
 
-    registers.pc = (imm + registers.x[rs1]) & (~1)
-    registers.x[rd] = registers.pc + 4
+    registers.pc = (imm + registers.read(rs1)) & (~1)
+    registers.write(rd, registers.pc + 4)
   }
 }

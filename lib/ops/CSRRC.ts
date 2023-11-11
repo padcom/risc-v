@@ -18,10 +18,10 @@ export class CSRRC implements Operation {
     const { rs1, rd, imm: csr } = this.decoder.decode(instruction)
 
     const value = memory.read8(csr).u8u32()
-    registers.x[rd] = value
+    registers.write(rd, value)
 
     if (rs1 !== Registers.zero) {
-      memory.write8(csr, value & ~registers.x[rs1])
+      memory.write8(csr, value & ~registers.read(rs1))
     }
   }
 }

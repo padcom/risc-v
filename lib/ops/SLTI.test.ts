@@ -54,7 +54,7 @@ describe('SLTI - set less than immediate', () => {
 
       op.execute(instruction, registers)
 
-      expect(registers.x[rd]).toBe(rdO)
+      expect(registers.read(rd)).toBe(rdO)
     })
   })
 })

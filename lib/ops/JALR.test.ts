@@ -46,7 +46,7 @@ describe('JALR - jump and link register', () => {
       op.execute(instruction, registers)
 
       expect(registers.pc).toBe(pcO)
-      expect(registers.x[rd].s32u32()).toBe(rdO)
+      expect(registers.read(rd).s32u32()).toBe(rdO)
     })
   })
 })

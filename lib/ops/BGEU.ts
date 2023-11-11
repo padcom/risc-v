@@ -16,7 +16,7 @@ export class BGEU implements Operation {
 
   execute(instruction: uint32, registers: Registers) {
     const { rs1, rs2, imm } = this.decoder.decode(instruction)
-    if (registers.x[rs1].s32u32() > registers.x[rs2].s32u32()) {
+    if (registers.read(rs1).s32u32() > registers.read(rs2).s32u32()) {
       registers.pc += imm
     }
   }

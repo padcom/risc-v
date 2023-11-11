@@ -32,10 +32,10 @@ export function immediate(
     if (debug) {
       console.log('ins', instruction.toBin32())
       console.log('csr', csrs.read8(csr).toBin8())
-      console.log('rd ', registers.x[rd].toBin32())
+      console.log('rd ', registers.read(rd).toBin32())
     }
 
-    expect(registers.x[rd]).toBe(rdO.s32u32())
+    expect(registers.read(rd)).toBe(rdO.s32u32())
     expect(csrs.read8(csr)).toBe(csrO)
   })
 }
@@ -59,7 +59,7 @@ export function register(
 
   it(`will execute ${instruction.toBin32()}`, () => {
     const registers = new Registers()
-    registers.x[rs1] = rs1I
+    registers.write(rs1, rs1I)
     const csrs = new CSR()
     csrs.write8(csr, csrI)
 
@@ -68,11 +68,11 @@ export function register(
     if (debug) {
       console.log('ins', instruction.toBin32())
       console.log('csr', csrs.read8(csr).toBin8())
-      console.log('rs1', registers.x[rs1].toBin32())
-      console.log('rd ', registers.x[rd].toBin32())
+      console.log('rs1', registers.read(rs1).toBin32())
+      console.log('rd ', registers.read(rd).toBin32())
     }
 
-    expect(registers.x[rd]).toBe(csrI.s32u32())
+    expect(registers.read(rd)).toBe(csrI.s32u32())
     expect(csrs.read8(csr)).toBe(csrO.s32u32())
   })
 }

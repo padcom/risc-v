@@ -17,6 +17,6 @@ export class SLTU implements Operation {
 
   execute(instruction: uint32, registers: Registers) {
     const { rs1, rs2, rd } = this.decoder.decode(instruction)
-    registers.x[rd] = registers.x[rs1].s32u32() < registers.x[rs2].s32u32() ? 1 : 0
+    registers.write(rd, registers.read(rs1).s32u32() < registers.read(rs2).s32u32() ? 1 : 0)
   }
 }

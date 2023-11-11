@@ -20,7 +20,7 @@ export class CSRRWI implements Operation {
     if (rd !== Registers.zero) {
       const value = memory.read8(csr)
       memory.write8(csr, zimm)
-      registers.x[rd] = value.u8u32()
+      registers.write(rd, value.u8u32())
     }
   }
 }

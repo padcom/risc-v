@@ -16,6 +16,6 @@ export class XORI implements Operation {
 
   execute(instruction: uint32, registers: Registers) {
     const { rs1, rd, imm } = this.decoder.decode(instruction)
-    registers.x[rd] = registers.x[rs1] ^ imm
+    registers.write(rd, registers.read(rs1) ^ imm)
   }
 }

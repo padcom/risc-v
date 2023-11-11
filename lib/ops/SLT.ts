@@ -17,6 +17,6 @@ export class SLT implements Operation {
 
   execute(instruction: uint32, registers: Registers) {
     const { rs1, rs2, rd } = this.decoder.decode(instruction)
-    registers.x[rd] = registers.x[rs1] < registers.x[rs2] ? 1 : 0
+    registers.write(rd, registers.read(rs1) < registers.read(rs2) ? 1 : 0)
   }
 }
