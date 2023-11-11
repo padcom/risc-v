@@ -4,7 +4,7 @@ import { SRAI } from './SRAI'
 import { Registers } from '../infrastructure/Registers'
 import { AluImmediateTestCase, immediate as test } from './alu-test'
 
-describe('SRAI - arithmetic shift right rs1 by imm[4:0] store in rd', () => {
+describe('SRAI - arithmetic right shift rs1 by imm[4:0] store in rd', () => {
   const op = new SRAI()
 
   const cases: AluImmediateTestCase[] = [{

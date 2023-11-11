@@ -42,6 +42,7 @@ export interface AluRegisterTestCase {
 export function register(
   op: any,
   { instruction, rs1, rs1I, rs2, rs2I, rd, rdO }: AluRegisterTestCase,
+  { debug = false } = {},
 ) {
   recognize(op, instruction)
 
@@ -51,6 +52,13 @@ export function register(
     registers.x[rs2] = rs2I.u32s32()
 
     op.execute(instruction, registers)
+
+    if (debug) {
+      console.log('ins', instruction.toBin32())
+      console.log('rs1', registers.x[rs1].toBin32())
+      console.log('rs2', registers.x[rs2].toBin32())
+      console.log('rd ', registers.x[rd].toBin32())
+    }
 
     expect(registers.x[rd]).toBe(rdO.u32s32())
   })
