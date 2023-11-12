@@ -7,7 +7,7 @@ import { Memory, RAM } from './lib/infrastructure/Memory'
 import { Registers } from './lib/infrastructure/Registers'
 import * as Ops from './lib/ops/index'
 
-const ops = Object.entries(Ops).map(([, OpType]) => new OpType())
+const KNOWN_INSTRUCTIONS = Object.entries(Ops).map(([, OpType]) => new OpType())
 
 interface InitRegisters {
   pc: number
@@ -44,7 +44,7 @@ function execute(ram: Memory, registers: Registers) {
     const { pc } = registers
     const instruction = ram.read32(pc)
 
-    const op = ops.find(item => item.recognize(instruction))
+    const op = KNOWN_INSTRUCTIONS.find(item => item.recognize(instruction))
     if (!op) throw new Error(`Unrecognized instruction: ${instruction.toBin32()}`)
 
     console.log(registers.pc.toHex32(), instruction.toHex32(), instruction.toBin32(), op)
