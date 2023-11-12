@@ -45,7 +45,7 @@ function execute() {
 
     console.log(registers.pc.toHex32(), instruction.toHex32(), instruction.toBin32(), op)
     op.execute(instruction, registers, ram)
-    registers.dump(-1, Registers.sp, 15)
+    registers.dump(-1, Registers.sp, Registers.a5)
 
     if (registers.pc === pc) {
       // advance program counter if it has not been modified by the operation (jumps!)
