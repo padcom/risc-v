@@ -31,11 +31,12 @@ async function load(filename: string, memory: Memory, address: number = memory.b
   return contents.byteLength
 }
 
+// eslint-disable-next-line complexity
 function execute() {
   console.log('Execution:')
   registers.dump(-1, Registers.sp)
 
-  for (let i = 0; i < 40; i += 4) {
+  while (true) {
     const { pc } = registers
     const instruction = ram.read32(pc)
 
@@ -46,8 +47,13 @@ function execute() {
     op.execute(instruction, registers, ram)
     registers.dump(-1, Registers.sp, 15)
 
-    // advance program counter if it has not been modified by the operation (jumps!)
-    if (registers.pc === pc) registers.pc += 4
+    if (registers.pc === pc) {
+      // advance program counter if it has not been modified by the operation (jumps!)
+      registers.pc += 4
+    } else if (registers.pc === 0) {
+      // jump to address 0x000000000 means end of program
+      break
+    }
   }
 }
 
