@@ -6,7 +6,7 @@ import './lib/utils'
 import { readFile } from 'node:fs/promises'
 import { Memory, RAM } from './lib/infrastructure/Memory'
 import { Registers } from './lib/infrastructure/Registers'
-import * as Ops from './lib/ops/index'
+import * as Ops from './lib/instructions/index'
 
 const KNOWN_INSTRUCTIONS = Object.entries(Ops).map(([, OpType]) => new OpType())
 
