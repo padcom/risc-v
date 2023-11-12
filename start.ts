@@ -29,7 +29,7 @@ async function load(filename: string, memory: Memory, address: number = memory.b
   const { length } = contents
   memory.load(memory.base, contents)
 
-  console.log('Loaded program:', contents.length)
+  console.log(`Program loaded at offset ${memory.base.toHex32()}; loaded data length:`, contents.length)
   memory.dump(address, length)
   console.log('')
 
