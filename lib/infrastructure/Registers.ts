@@ -11,7 +11,18 @@ export class Registers {
   }
 
   write(index: uint5, value: int32) {
-    if (index > 0) this.x[index] = value
+    this.x[index] = value
+  }
+
+  static ALL_X = new Array(32).map((_, index) => index)
+
+  dump(...registers: number[]) {
+    if (registers.length === 0) registers = Registers.ALL_X
+    registers.forEach(register => {
+      const reg = register === -1 ? 'pc ' : `x${register}`.padEnd(3, ' ')
+      const val = register === -1 ? this.pc : this.read(register)
+      console.log(reg, val.toHex32(), val.toBin32(), val)
+    })
   }
 
   static readonly zero = 0
@@ -23,7 +34,7 @@ export class Registers {
   static readonly t1   = 6
   static readonly t2   = 7
   static readonly fp   = 8
-  static readonly s0   = Registers.fp
+  static readonly s0   = 8
   static readonly s1   = 9
   static readonly a0   = 10
   static readonly a1   = 11

@@ -2,7 +2,8 @@
   "name": "risc-v",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "type": "module",
+  "module": "start.mjs",
   "scripts": {
     "test": "vitest run",
     "test:watch": "vitest dev"
