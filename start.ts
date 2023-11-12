@@ -7,11 +7,14 @@ import { Memory, RAM } from './lib/infrastructure/Memory'
 import { Registers } from './lib/infrastructure/Registers'
 import * as Ops from './lib/ops/index'
 
-const registers = new Registers()
-const ram = new RAM(0x00400000, 0x10000)
 const ops = Object.entries(Ops).map(([, OpType]) => new OpType())
 
-function initialize(pc: number, sp: number) {
+interface InitRegisters {
+  pc: number
+  sp: number
+}
+
+function initialize(registers: Registers, { pc, sp }: InitRegisters) {
   console.log('System initialization')
 
   // initialize program counter
@@ -22,17 +25,18 @@ function initialize(pc: number, sp: number) {
 
 async function load(filename: string, memory: Memory, address: number = memory.base) {
   const contents = await readFile(filename)
+  const { length } = contents
   memory.load(memory.base, contents)
 
   console.log('Loaded program:', contents.length)
-  memory.dump(address, 40)
+  memory.dump(address, length)
   console.log('')
 
-  return contents.byteLength
+  return contents.length
 }
 
 // eslint-disable-next-line complexity
-function execute() {
+function execute(ram: Memory, registers: Registers) {
   console.log('Execution:')
   registers.dump(-1, Registers.sp)
 
@@ -57,6 +61,12 @@ function execute() {
   }
 }
 
-initialize(ram.base, ram.base + ram.size - 4)
+const registers = new Registers()
+const ram = new RAM(0x00400000, 0x10000)
+
+initialize(registers, {
+  pc: ram.base,
+  sp: ram.base + ram.size - 4,
+})
 await load('./hello-world/hello-world.bin', ram)
-execute()
+execute(ram, registers)
