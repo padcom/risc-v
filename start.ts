@@ -1,5 +1,6 @@
 #!/usr/bin/env -S npx ts-node
 
+// install some number utilities in Number prototype
 import './lib/utils'
 
 import { readFile } from 'node:fs/promises'
