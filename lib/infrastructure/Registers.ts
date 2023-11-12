@@ -3,6 +3,7 @@
 import { int32, uint32, uint5 } from './Memory'
 
 export class Registers {
+  static readonly pc   = -1 // only for dumping registers
   static readonly zero = 0
   static readonly ra   = 1
   static readonly sp   = 2
@@ -49,14 +50,14 @@ export class Registers {
   }
 
   private static ALL_X = new Array(32).map((_, index) => index)
-  private static ALL = [-1, ...Registers.ALL_X]
+  private static ALL = [Registers.pc, ...Registers.ALL_X]
 
   dump(...registers: number[]) {
     if (registers.length === 0) registers = Registers.ALL
 
     registers.forEach(register => {
-      const reg = register === -1 ? 'pc ' : `x${register}`.padEnd(3, ' ')
-      const val = register === -1 ? this.pc : this.read(register)
+      const reg = register === Registers.pc ? 'pc ' : `x${register}`.padEnd(3, ' ')
+      const val = register === Registers.pc ? this.pc : this.read(register)
       console.log(reg, val.toHex32(), val.toBin32(), val)
     })
   }
