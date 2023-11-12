@@ -47,17 +47,18 @@ export class RAM implements Memory {
 
   dump(from: number, length: number): Memory {
     const line = []
+    let i = 0
 
-    for (let i = 0; i < length; i++) {
-      line.push(this.read8(from + i).toHex8())
-      if (line.length === 16) {
-        console.log(line.join(' '))
+    for (i = 0; i < length; i++) {
+      line.push(this.read8(from + i).toHex8().substring(2, 4))
+      if (line.length === 32) {
+        console.log((from + i - 31).toHex32(), line.join(' '))
         line.splice(0, line.length)
       }
     }
 
     if (line.length > 0) {
-      console.log(line.join(' '))
+      console.log((from + i - 31).toHex32(), line.join(' '))
     }
 
     return this
